@@ -14,26 +14,36 @@ expected=pd.read_table('mock10_unite_ditsy_101317_mockrobiota_expected_freq.txt'
 
 ## Reformat Taxonomy
 
-# Initialize dictionary to store taxonomy levels
+# Initialize dictionary to store predicted taxonomy levels
 levels={}
 for i in TAXA_LEVELS:
     levels[i]=[]
 
 taxa=comboTaxa['Taxon'].str.split(';')
 
+# Seperates each row in to taxa, unkown catagorized by highest taxa level
 for row in taxa:
-    for key in levels.keys():
+    max_tax=0
+    for key in TAXA_LEVELS:
         added=0
         for val in row:
             if val[0]==key:
                 levels[key].append(val)
                 added=1
         if added==0:
-            levels[key].append('Unknown')
+            if not (max_tax):
+                index=TAXA_LEVELS.index(key)
+                if not (index == 0):
+                    max_tax=key+'_'+row[index-1]
+                else:
+                    max_tax=key
+
+                levels[key].append('Unknown_'+max_tax)
+            else:
+                levels[key].append('Unknown_'+max_tax)
 
 levels=pd.DataFrame(levels)
 levels=levels[TAXA_LEVELS] # Order dataframe
-
 
 taxa=pd.concat([levels,comboTaxa],axis=1)
 
@@ -47,6 +57,23 @@ predict=predict[taxa.columns.values.tolist()+['Mock.1','Mock.2','Mock.3']]
 predict['Mock.1']= predict['Mock.1']/predict['Mock.1'].sum()
 predict['Mock.2']= predict['Mock.2']/predict['Mock.2'].sum()
 predict['Mock.3']= predict['Mock.3']/predict['Mock.3'].sum()
+
+## Format Expected
+Etaxa=expected[TAXA_LEVELS_LONG]
+Elevels={}
+for i in TAXA_LEVELS:
+    Elevels[i]=[]
+
+for i in range(len(Etaxa)):
+    k=0
+    row=Etaxa.iloc[i]
+    for j,val in enumerate(row):
+        if val == 'Unknown':
+            repVal=val+'_'+TAXA_LEVELS[j]+'_'+row[j-1]
+            Etaxa.iloc[i][j]=repVal 
+expected[TAXA_LEVELS_LONG]=Etaxa
+                
+
 
 m1=[]
 m2=[]
@@ -67,11 +94,21 @@ for level in TAXA_LEVELS_LONG:
     m3.append(bc[2])
 
 x=range(len(m1))
+
+bcDF=pd.DataFrame({
+    'x':x,
+    'Mock 1':m1,
+    'Mock 2':m2,
+    'Mock 3':m3
+})
+
+
+
 fig=plt.figure
-plt.scatter(x,m1)
-plt.scatter(x,m2)
-plt.scatter(x,m3)
+plt.scatter(x,m1,c='r')
+plt.scatter(x,m2,c='r')
+plt.scatter(x,m3,c='r')
 
-
+plt.title('Bray-Curtis Distance Replaced SubSpecies')
 plt.show()
 
