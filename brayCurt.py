@@ -108,7 +108,8 @@ fig=plt.figure
 plt.scatter(x,m1,c='r')
 plt.scatter(x,m2,c='r')
 plt.scatter(x,m3,c='r')
-
-plt.title('Bray-Curtis Distance Replaced SubSpecies')
+ax=plt.gca
+plt.xticks(x,TAXA_LEVELS_LONG,rotation=30)
+plt.title('Bray-Curtis Distance Replaced SubPhylums')
 plt.show()
 
