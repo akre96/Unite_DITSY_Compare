@@ -1,0 +1,12 @@
+kingdom	phylum	subphylum	class	order	family	genus	species	Mock.1	Mock.2	Mock.3
+k__Fungi	p__Ascomycota	Unknown	c__Sordariomycetes	o__Hypocreales	f__Nectriaceae	g__Fusarium	Unknown	0.0625	0.0625	0.0625
+k__Fungi	p__Ascomycota	q__Saccharomycotina	c__Saccharomycetes	o__Saccharomycetales	f__Pichiaceae	g__Pichia	s__Pichia_kudriavzevii	0.0625	0.0625	0.0625
+k__Fungi	p__Ascomycota	q__Saccharomycotina	c__Saccharomycetes	o__Saccharomycetales	f__[Metschnilowiaceae_Candida_catenulata_clade]	g__Diutina	s__Diutina_catenulata	0.0625	0.0625	0.0625
+k__Fungi	p__Ascomycota	Unknown	c__Sordariomycetes	o__Microascales	f__Microascaceae	g__Scopulariopsis	Unknown	0.0625	0.0625	0.0625
+k__Fungi	p__Ascomycota	q__Saccharomycotina	c__Saccharomycetes	o__Saccharomycetales	f__Saccharomycetaceae	g__Kluyveromyces	s__Kluyveromyces_lactis	0.0625	0.0625	0.0625
+k__Fungi	p__Ascomycota	q__Saccharomycotina	c__Saccharomycetes	o__Saccharomycetales	f__[Debaryomycetaceae_Hyphopichia_clade]	g__Hyphopichia	s__Hyphopichia_burtonii	0.0625	0.0625	0.0625
+k__Fungi	p__Ascomycota	q__Saccharomycotina	c__Saccharomycetes	o__Saccharomycetales	f__Saccharomycetaceae	g__Zygosaccharomyces	s__Zygosaccharomyces_rouxii	0.0625	0.0625	0.0625
+k__Fungi	p__Ascomycota	q__Saccharomycotina	c__Saccharomycetes	o__Saccharomycetales	 f__[Phaffomycetaceae_Cyberlindnera_clade]	g__Cyberlindnera	s__Cyberlindnera_jadinii	0.0625	0.0625	0.0625
+k__Fungi	p__Ascomycota	Unknown	c__Eurotiomycetes	o__Eurotiales	f__Trichocomaceae	g__Penicillium	Unknown	0.1875	0.1875	0.1875
+k__Fungi	p__Ascomycota	q__Saccharomycotina	c__Saccharomycetes	o__Saccharomycetales	f__[Dipodascaceae_Galactomyces_clade]	g__Galactomyces	Unknown	0.25	0.25	0.25
+k__Fungi	p__Ascomycota	q__Saccharomycotina	c__Saccharomycetes	o__Saccharomycetales	f__Debaryomycetaceae	g__Debaryomyces	s__Debaryomyces_hansenii	0.0625	0.0625	0.0625
