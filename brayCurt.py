@@ -3,9 +3,11 @@ import pandas as pd
 import scipy.spatial.distance as dist
 import scipy.stats as stats
 import matplotlib.pyplot as plt
-## Global Variables
+
+## Global Constants
 TAXA_LEVELS=['k','p','q','c','o','f','g','s']
 TAXA_LEVELS_LONG=['kingdom','phylum','subphylum','class','order','family','genus','species']
+TAXA_LEVELS_LONG_NOSUBPHYLUM=['kingdom','phylum','class','order','family','genus','species']
 
 ## Import Data
 comboTaxa=pd.read_csv('mock10_UNITE_DITSY_101319_v2.csv') # FeatureID, Taxon, Confidence
@@ -126,7 +128,8 @@ Dm1=[]
 Dm2=[]
 Dm3=[]
 
-for level in TAXA_LEVELS_LONG:
+# Calculate Bray-Curtis for Hybrid,Unite,Ditsy classifiers
+for level in TAXA_LEVELS_LONG_NOSUBPHYLUM: # NOT CALCULATING SUBPHYLUM
     pred=predict.groupby(level).sum()
     unite=Upredict.groupby(level).sum()
     ditsy=Dpredict.groupby(level).sum()
@@ -155,8 +158,9 @@ for level in TAXA_LEVELS_LONG:
     Dm2.append(Dbc[1])
     Dm3.append(Dbc[2])
 
-x=range(len(m1))
+x=range(len(m1)) #index number for taxonomy
 
+#unused dataframe of BC data
 bcDF=pd.DataFrame({
     'x':x,
     'Mock 1':m1,
@@ -164,6 +168,7 @@ bcDF=pd.DataFrame({
     'Mock 3':m3
 })
 
+# Lists to numpy arrays conversion
 m1=np.array(m1)
 m2=np.array(m2)
 m3=np.array(m3)
@@ -175,10 +180,7 @@ Dm2=np.array(Dm2)
 Dm3=np.array(Dm3)
 
 
-
-
-
-
+# Plot of Bray-Curtis for Hybrid,Unite,Ditsy classifiers
 
 fig=plt.figure
 
@@ -197,7 +199,7 @@ plt.scatter(x,Dm1,c='g')
 plt.scatter(x,Dm2,c='g')
 plt.scatter(x,Dm3,c='g')
 ax=plt.gca
-plt.xticks(x,TAXA_LEVELS_LONG,rotation=20)
+plt.xticks(x,TAXA_LEVELS_LONG_NOSUBPHYLUM,rotation=20)
 plt.title('Mockrobiotia Community 10 Classification Efficacy')
 plt.ylabel('Bray-Curtis Distance')
 
